@@ -1,0 +1,30 @@
+/////////////////////////////////////-+++-/////////////////////////////////////////
+// Teaser List
+// a list of teasers
+//
+/////////////////////////////////////-+++-/////////////////////////////////////////
+
+
+.TeaserList {
+
+    &__header {
+        position: relative;
+        margin-bottom: 50px;
+    }
+
+    &__title {
+        @include title-l; 
+        margin-bottom: 10px;
+    }
+
+
+    &__content {
+        margin-bottom: 40px;
+
+        ul {
+            @include borderStack-m(rgba(0,0,0,.25));
+        }
+    }
+}
+
+
