@@ -37,6 +37,56 @@ $SiteHeader-bp: mobilemenu-bp;
     }
 }
 
+.Summary {
+    background: $red;
+    color: $white;
+    height: 100vh;
+    display: flex;
+
+    &__inside {
+        margin: auto;
+        max-width: 770px;
+        padding: 40px;
+    }
+
+    li {
+        line-height: 1.25em;
+
+        &:not(:last-child) {
+            margin-bottom: 20px;
+        }
+    }
+}
+
+
+
+.Outro {
+    text-align: center;
+    height: 100vh;
+    display: flex;
+
+    &__inside {
+        margin: auto;
+        padding: 20px;
+    }
+
+    h3 {
+        line-height: 1em;
+        font-size: 70px;
+        margin-bottom: 50px;
+
+        @include mq($from: small-bp) {
+            font-size: 120px;
+        }
+    }
+
+    a {
+        display: block;
+        margin-bottom: 10px;
+
+    }
+}
+
 
 
 //-+++- DONT REMOVE THIS COMMENT! its used by Yeoman | header -+++-//

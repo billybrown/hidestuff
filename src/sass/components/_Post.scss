@@ -412,14 +412,22 @@
 #Method2-example4 {
     text-align: right;
 
-
-    .Example__hideContent {
-        transform: translatey(-101%);
-        z-index: 3;
-        height: 140px;
+    .Example__trigger {
+        z-index: 1;
     }
 
-    .Example__pageContent,
+
+    .Example__hideContent {
+        transform: translatey(101%);
+        height: 140px;
+        top: auto;
+        bottom: 0;
+
+        p {
+            top: auto;
+        }
+    }
+
     .Example__hideContent {
         transition: transform .5s ease;        
     }
@@ -429,14 +437,117 @@
             transform: translatey(0);
         }
 
-        .Example__pageContent {
-            transform: translatey(140px);
-        }
-
         .Example__cover {
             opacity: 1;
             visibility: visible;
         }
+    }
+}
+
+#Method2-example5 {
+
+    .Example__hideContent {
+        top: 40px;
+        right: 40px;
+        bottom: 40px;
+        left: 40px;
+        width: auto;
+        height: auto;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity $animation, visibility $animation;
+        z-index: 100;
+        background: $blue;
+    }
+
+    .Example__cover {
+        z-index: 10;
+    }
+
+    &.js-active {
+
+        .Example__cover {
+            opacity: .5;
+            visibility: visible;
+        }
+
+        .Example__hideContent {
+            opacity: 1;
+            visibility: visible;
+        }
+
+    }
+}
+
+#Method2-example6 {
+
+    .Example__hideContent {
+        transition: transform $animation;
+        z-index: 100;
+        width: 200px;
+        height: 100px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-200%, -50%);
+        background: $blue;
+
+        p {
+            top: auto;
+        }
+
+        .Example__cover {
+            z-index: 3;
+        }
+    }
+
+
+    &.js-active {
+
+        .Example__cover {
+            opacity: .9;
+            visibility: visible;
+        }
+
+        .Example__hideContent {
+            transform: translate(-50%, -50%);
+        }
+
+    }
+}
+
+#Method2-example7 {
+    text-align: right;
+
+    .Example__hideContent {
+        transition: transform $animation;
+        width: 200px;
+        height: auto;
+        left: auto;
+        top: 0;
+        right: 0;
+        background: $navy;
+        padding: 80px 20px 20px; 
+        visibility: hidden;
+        opacity: 0;
+
+        p {
+            top: auto;
+        }
+    }
+
+
+    &.js-active {
+
+        .Example__hideContent {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .Example__cover {
+            opacity: .5;
+            visibility: visible;
+        }
+
     }
 }
 
@@ -445,7 +556,6 @@
     .Example__hideContent {
         overflow: hidden;
         position: relative;
-        transition: height .5s ease;
         height: 0;
         display: block;
 
@@ -467,12 +577,11 @@
 
     .Example__hideContent {
         overflow: hidden;
-        position: absolute;
+        position: relative;
         transition: height .5s ease;
         height: 0;
         display: block;
-        top: 80px;
-        z-index: 5;
+        margin-bottom: 10px;
 
         p {
             top: auto;
@@ -485,10 +594,61 @@
         .Example__hideContent {
             height: 80px;
         }
+    }
+}
 
-        .Example__cover {
-            opacity: 1;
-            visibility: visible;
+#Method3-example3 {
+
+    .Example__hideContent {
+        position: relative;
+        transition: height .5s ease;
+        height: 0;
+        display: block;
+        margin-bottom: 10px;
+        background: transparent;
+
+        p {
+            top: auto;
+            padding: 20px;
+        }
+    }
+
+    .Example__hideInside {
+        background: $navy;
+        transform: translatex(-110%);
+        transition: transform .3s ease;
+    }
+
+
+    &.js-active {
+        .Example__hideContent {
+            height: 80px;
+        }
+
+        .Example__hideInside {
+            transform: translatex(0);
+        }
+    }
+}
+
+#Method3-example4 {
+
+    .Example__hideContent {
+        overflow: hidden;
+        position: relative;
+        height: 0;
+        display: block;
+
+        p {
+            top: auto;
+            padding: 20px;
+        }
+    }
+
+
+    &.js-active {
+        .Example__hideContent {
+            height: 80px;
         }
     }
 }
@@ -496,19 +656,37 @@
 #Method4-example1 {
 
     .Example__hideContent {
-        height: 130px;
-        padding-top: 60px;
-        width: 190px;
-        left: 50%;
-        transform: translatex(-50%);
         opacity: 0;
         visibility: hidden;
-        transition: opacity $animation, visibility $animation;
+        transition: opacity $animation, visibility $animation, background $animation;
+        position: absolute;
+        height: auto;
+        border-radius: 5px;
+        padding: 50px 10px 20px;
+        background: $blue;
 
         p {
             top: auto;
+            line-height: 1.25em;
         }
 
+    }
+
+    .Example__triggerWrapper {
+        position: relative;
+        border-radius: 5px;
+        width: 114px;   
+        margin: 0 auto;
+
+        &:hover {
+            .Example__hideContent {
+                background: $red;
+            }
+        }
+    }
+
+    .Example__trigger {
+        display: block;
     }
 
 
@@ -572,19 +750,56 @@
         opacity: 0;
         visibility: hidden;
         transition: opacity $animation, visibility $animation, top $animation;
-
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        z-index: 2;
+        background: $blue;
+        
         &:after {
             content: "";
             position: absolute;
-            top: -15px;
+            top: -30px;
+            width: 8px;
+            background: $blue;
+            height: 30px;
             left: 50%;
-            transform: translatex(-50%);
-            width: 0; 
-            height: 0; 
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-bottom: 15px solid $navy;
+            margin-left: -4px;
         }
+
+        p {
+            top: auto;
+            line-height: 1.25em;
+        }
+
+    }
+
+
+    &.js-active {
+        .Example__hideContent {
+            opacity: 1;
+            visibility: visible;
+            top: 82px;
+        }
+
+        .Example__cover {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+#Method4-example4 {
+
+    .Example__hideContent {
+        height: 130px;
+        padding-top: 60px;
+        width: 190px;
+        left: 50%;
+        transform: translatex(-50%);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity $animation, visibility $animation;
 
         p {
             top: auto;
@@ -597,7 +812,6 @@
         .Example__hideContent {
             opacity: 1;
             visibility: visible;
-            top: 82px;
         }
     }
 }

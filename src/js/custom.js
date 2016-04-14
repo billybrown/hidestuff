@@ -57,6 +57,10 @@
 		}
 	});
 
+	$('#Method3-example4 .Example__trigger').click(function() {
+		$(this).remove();
+	});
+
 //-+++- DONT REMOVE THIS COMMENT! its used by yeoman | js -+++-//
 
 
