@@ -1,0 +1,604 @@
+/////////////////////////////////////-+++-/////////////////////////////////////////
+// Post
+//
+// Styles for the main article or post. On a blog page this would be the actual
+// blog text. It has sidebars sometimes, it has lots of 'fields'.
+//
+//
+/////////////////////////////////////-+++-/////////////////////////////////////////
+
+
+
+.Intro {
+    background: $red;
+    color: $white;
+    height: 100vh;
+    display: flex;
+
+    &__inside {
+        margin: auto;
+        max-width: 770px;
+        padding: 40px;
+    }
+
+    li {
+        line-height: 1.25em;
+
+        &:not(:last-child) {
+            margin-bottom: 20px;
+        }
+    }
+}
+
+.Example {
+    max-width: 300px;
+    background: $aqua;
+    margin: 0 auto;
+    text-align: center;
+    min-height: 400px;
+    position: relative;
+    overflow: hidden;
+
+    &__trigger {
+        background: $blue;
+        display: inline-block;
+        padding: 4px 18px;
+        border-radius: 4px;
+        color: $white;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: .1em;
+        font-weight: 800;
+        transition: background $animation;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 3;
+
+        &:hover {
+            background: $red;
+            cursor: pointer;
+        }
+    }
+
+    p {
+        text-align: left;
+    }
+
+    &__hideContent {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%; 
+        background: $navy;
+        color: $white;
+        display: flex;
+        z-index: 1;
+
+        p {
+            text-align: center;
+            margin: auto;
+            position: relative;
+            top: -10px;
+
+        }
+    }
+
+    &__close {
+        position: absolute;
+        top: 10px;
+        right: 16px;
+        font-size: 14px;
+        transition: color $animation;
+
+        &:hover {
+            color: $red;
+            cursor: pointer;
+        }
+    }
+
+    &__cover {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.7);
+        z-index: 1;
+        transition: opacity .5s ease, visibility .5s ease;
+        min-height: 400px;
+    }
+
+    &__pageContent {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+
+.Method {
+
+    h2 {
+        text-align: center;
+        font-size: 50px;
+        line-height: 1em;
+
+        span {
+            display: block;
+            font-size: 36px;
+        }
+    }
+
+    ul {
+        padding-left: 20px;
+        line-height: 1.25em;
+        margin-bottom: 0;
+
+        li:not(:last-child) {
+            margin-bottom: 10px;
+        }
+    }
+
+    &__stats,
+    &__examples,
+    &__varients {
+        padding-bottom: 40px;
+        margin-bottom: 40px;
+    }
+
+    &__wild {
+        text-align: center;
+
+        a {
+            display: block;
+
+            &:not(:last-child) {
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+
+#Method1-example1 {
+    .Example__hideContent {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility .2s ease, opacity .2s ease;
+    }
+
+    &.js-active .Example__hideContent {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+
+#Method1-example2 {
+    .Example__hideContent {
+        transform: translatex(-100%);
+        transition: transform .5s ease;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    &.js-active  .Example__hideContent {
+        transform: translatex(0);
+    }
+}
+
+#Method1-example3 {
+    .Example__hideContent {
+        transform: translatex(-101%);
+        z-index: 3;
+    }
+
+    .Example__pageContent,
+    .Example__hideContent {
+        transition: transform .5s ease;        
+    }
+
+    &.js-active {
+        .Example__hideContent {
+            transform: translatex(0);
+        }
+
+        .Example__pageContent {
+            transform: translatex(100%);
+        }
+    }
+}
+
+#Method1-example4 {
+    .Example__hideContent {
+        border-radius: 50%;
+        transition: transform .5s ease, border-radius .5s ease;
+        transform: scale(.0000001) translatey(100%);
+    }
+
+    &.js-active .Example__hideContent {
+        border-radius: 0;
+        transform: scale(1) translatey(0);
+    }
+}
+
+#Method1-example5 {
+    perspective: 1000;
+    background: $silver;
+
+    .Example__inside {
+        transition: 1s;
+        transform-style: preserve-3d;
+        position: relative;
+    }
+
+    .Example__hideContent,
+    .Example__pageContent {
+        backface-visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 400px;
+        width: 290px;
+    }
+
+    .Example__pageContent {
+        z-index: 2;
+        transform: rotateY(0deg);
+        background: $aqua;
+    }
+
+    .Example__hideContent {
+        transform: rotateY(180deg);
+    }
+
+    &.js-active {
+
+        .Example__inside {
+            transform: rotateY(180deg);
+        }
+    }
+}
+
+#Method1-example6 {
+    background: $silver;
+
+    .Example__hideContent {
+        transform: translatex(-101%);
+        transition: transform .5s ease;
+        transition-delay: .5s;
+        z-index: 10;
+    }
+
+    .Example__pageContent {
+        background: $aqua;
+        min-height: 400px;
+        transition: transform .5s ease;
+    }
+
+    &.js-active {
+
+        .Example__hideContent {
+            transform: translatex(0);
+        }
+
+        .Example__pageContent {
+            transform: scale(.5) translatey(290px);
+
+        }
+
+    }
+}
+
+#Method1-example7 {
+
+    .Example__hideContent {
+    }
+
+    .Example__pageContent {
+        z-index: 10;
+        position: relative;
+        background: $aqua;
+        min-height: 400px;
+        transition: 1s;
+        transform-style: preserve-3d;
+        position: relative;
+        transform-origin: top right; 
+    }
+
+    &.js-active {
+
+        .Example__hideContent {
+        }
+
+        .Example__pageContent {
+            transform: rotateY(180deg);
+        }
+
+    }
+}
+
+#Method2-example1 {
+    text-align: left;
+
+    .Example__hideContent {
+        transform: translatex(-101%);
+        z-index: 3;
+        width: 70%;
+    }
+
+    .Example__pageContent,
+    .Example__hideContent {
+        transition: transform .5s ease;        
+    }
+
+    &.js-active {
+        .Example__hideContent {
+            transform: translatex(0);
+        }
+
+        .Example__pageContent {
+            transform: translatex(70%);
+        }
+
+        .Example__cover {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+#Method2-example2 {
+    text-align: right;
+
+    .Example__hideContent {
+        transform: translatex(-101%);
+        z-index: 3;
+        width: 25%;
+    }
+
+    .Example__hideContent {
+        transition: transform .5s ease;        
+    }
+
+    &.js-active {
+        .Example__hideContent {
+            transform: translatex(0);
+        }
+
+        .Example__cover {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+#Method2-example3 {
+
+    .Example__hideContent {
+        transform: translatex(-101%);
+        z-index: 3;
+        width: 40%;
+    }
+
+    .Example__pageContent,
+    .Example__hideContent {
+        transition: transform .5s ease;        
+    }
+
+    .Example__pageContent {
+        width: 100%;
+        padding: 20px; 
+        transition: padding .5s ease;
+    }
+
+    &.js-active {
+        .Example__hideContent {
+            transform: translatex(0);
+        }
+
+        .Example__pageContent {
+            padding-left: calc(60% - 40px);
+        }
+
+        .Example__cover {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+#Method2-example4 {
+    text-align: right;
+
+
+    .Example__hideContent {
+        transform: translatey(-101%);
+        z-index: 3;
+        height: 140px;
+    }
+
+    .Example__pageContent,
+    .Example__hideContent {
+        transition: transform .5s ease;        
+    }
+
+    &.js-active {
+        .Example__hideContent {
+            transform: translatey(0);
+        }
+
+        .Example__pageContent {
+            transform: translatey(140px);
+        }
+
+        .Example__cover {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+#Method3-example1 {
+
+    .Example__hideContent {
+        overflow: hidden;
+        position: relative;
+        transition: height .5s ease;
+        height: 0;
+        display: block;
+
+        p {
+            top: auto;
+            padding: 20px;
+        }
+    }
+
+
+    &.js-active {
+        .Example__hideContent {
+            height: 80px;
+        }
+    }
+}
+
+#Method3-example2 {
+
+    .Example__hideContent {
+        overflow: hidden;
+        position: absolute;
+        transition: height .5s ease;
+        height: 0;
+        display: block;
+        top: 80px;
+        z-index: 5;
+
+        p {
+            top: auto;
+            padding: 20px;
+        }
+    }
+
+
+    &.js-active {
+        .Example__hideContent {
+            height: 80px;
+        }
+
+        .Example__cover {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+#Method4-example1 {
+
+    .Example__hideContent {
+        height: 130px;
+        padding-top: 60px;
+        width: 190px;
+        left: 50%;
+        transform: translatex(-50%);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity $animation, visibility $animation;
+
+        p {
+            top: auto;
+        }
+
+    }
+
+
+    &.js-active {
+        .Example__hideContent {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+#Method4-example2 {
+
+    .Example__hideContent {
+        height: 70px;
+        width: 190px;
+        left: 50%;
+        top: 70px;
+        transform: translatex(-50%);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity $animation, visibility $animation, top $animation;
+
+        &:after {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translatex(-50%);
+            width: 0; 
+            height: 0; 
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 15px solid $navy;
+        }
+
+        p {
+            top: auto;
+        }
+
+    }
+
+
+    &.js-active {
+        .Example__hideContent {
+            opacity: 1;
+            visibility: visible;
+            top: 82px;
+        }
+    }
+}
+
+#Method4-example3 {
+
+    .Example__hideContent {
+        height: 70px;
+        width: 190px;
+        left: 50%;
+        top: 70px;
+        transform: translatex(-50%);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity $animation, visibility $animation, top $animation;
+
+        &:after {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translatex(-50%);
+            width: 0; 
+            height: 0; 
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 15px solid $navy;
+        }
+
+        p {
+            top: auto;
+        }
+
+    }
+
+
+    &.js-active {
+        .Example__hideContent {
+            opacity: 1;
+            visibility: visible;
+            top: 82px;
+        }
+    }
+}
+

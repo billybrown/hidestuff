@@ -1,0 +1,23 @@
+/////////////////////////////////////-+++-/////////////////////////////////////////
+// Definition list
+// 
+// http://html5doctor.com/the-dl-element/
+/////////////////////////////////////-+++-/////////////////////////////////////////
+
+
+
+
+// definition lists
+// more on definition lists: http://html5doctor.com/the-dl-element/
+
+dl {
+    margin: 0; 
+}
+
+dt {
+    font-weight: 600;
+}
+
+dt, dd {
+    margin: 0;
+}
